@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/fragments/fragment :: header-all">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+        <script>
+        	$(document).ready(function() {
+        		$('#studentTable').DataTable();
+        	});
+        </script>
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css" />
+    </head>
+    <body>
+        <h1>All Students</h1>
+        <table id="studentTable" class="display" cellspacing="0" width="100%">
+        	<thead>
+        		<tr>
+        			<th>No.</th>
+        			<th>NPM</th>
+        			<th>Name</th>
+        			<th>GPA</th>
+        			<th>Cum Laude</th>
+        			<th>Delete</th>
+        			<th>Update</th>
+        		</tr>
+        	</thead>
+        	<tfoot th:each="student,iterationStatus: ${students}" th:class="${iterationStatus.odd}?'odd'">
+        		<tr>
+        			<td th:text="${iterationStatus.count}"></td>
+        			<td th:text="${student.npm}"></td>
+        			<td th:text="${student.name}"></td>
+        			<td th:text="${student.gpa}"></td>
+        			<td th:text="${student.gpa}>=3.49? 'Ya' : 'Tidak'"></td>
+        			<td>Delete Student</td>
+        			<td>Update Student</td>
+        		</tr>
+        	</tfoot>
+        </table>
+    </body>
+</html>
+        			
